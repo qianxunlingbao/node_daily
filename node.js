@@ -174,3 +174,38 @@ eventEmitter的方法：
 js语言自身只有字符串数据类型，没有二进制数据类型
 但在处理TCP流或文件流时，必须使用到二进制数据。
 因此node.js专门定义了一个buffer类，该类用来创建一个专门存放二进制数据的缓冲区。
+
+
+
+//2021/8/25
+vue实现对div的拖拽
+首先设置div样式
+.charts {
+	position: absolute;
+	right: 10px;
+	top: 200px;
+	width: 800px;
+	z-index: 999;
+  
+  }
+其次在html中引入样式
+<div class="charts">
+      <div class="chart-container" v-show="hdm">
+        <div @click="onhdmClose" class="chart-close">关闭</div>
+        <div class="chart-body">
+            <div id="hdmChart" style="width: 600px;height:400px" v-show="hdm" ref="hdm"></div>
+        </div>
+      </div>
+    </div>
+编写js代码
+var draggableElems = document.querySelectorAll(".panel-group");
+    // array of Draggabillies
+    var draggies = [];
+    // init Draggabillies
+    for (var i = 0; i < draggableElems.length; i++) {
+      var draggableElem = draggableElems[i];
+      var draggie = new Draggabilly(draggableElem, {
+        containment: ".container"
+      });
+      draggies.push(draggie);
+    }
