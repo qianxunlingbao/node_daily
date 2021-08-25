@@ -208,4 +208,97 @@ var draggableElems = document.querySelectorAll(".panel-group");
         containment: ".container"
       });
       draggies.push(draggie);
-    }
+	}
+	
+
+//折现图结合echarts
+import * as echarts from 'echarts' //引入echarts，当然全局需要npm安装echarts模块
+//<div id="hdmChart" style="width: 600px;height:400px" v-show="hdm" ref="hdm"></div>
+// 获取表出现的div的id，注意给表设置固定的宽高px单位，不要用%
+var chartDom = document.getElementById("hdmChart");
+var myChart = echarts.init(chartDom);//初始化
+var option = {
+	title: { //出现在图标头部
+		text: "横断面分析",
+		left: "center",
+		textStyle: {
+			color: "#fff"
+		}
+	},
+	tooltip: { //鼠标划到点上显示的内容
+		// trigger: 'axis',
+		// axisPointer: {
+		//     type: 'shadow'
+		// },
+		// position: { top: 0 },
+		//自定义显示的内容
+		formatter: function () {
+			let str = '';
+			// pipeType管道类型
+			console.log(arguments)
+			var pipe;
+			for (var i = 0; i < data.length; i++) {
+				console.log(data[i].pipeType)
+				if (arguments[0].value == data[i].deep) {
+					console.log(data[i].pipeType)
+					pipe = data[i].pipeType
+				}
+			}
+			console.log(pipe)
+			str = `管线类型：` + `${pipe}` + `<br>` + `距起点距离：` + `${arguments[0].name}` + `m` + `<br>` + `管道埋深：` + `${arguments[0].value}` + `m`
+
+			return str
+		}
+	},
+	grid: {
+		left: '3%',
+		right: '20%',
+		bottom: '3%',
+		containLabel: true
+	},
+	xAxis: [
+		{
+			type: 'category',
+			data: xAxisData,
+			axisTick: {
+				alignWithLabel: true
+			},
+			nameTextStyle: {
+				color: '#fff'
+			},
+			axisLabel: {
+				rotate: -45
+			},
+			name: '距起点距离(单位:m)'
+		}
+	],
+	yAxis: [
+		{
+			type: 'value',
+			nameTextStyle: {
+				color: '#fff'
+			},
+			name: '管线埋深(单位:m)'
+		}
+	],
+	series: [
+		{
+			name: '管线埋深',
+			type: 'line',
+			barWidth: '20%',
+			data: yAxisData,
+			symbolSize: 15,
+			// symbol:'circle',
+			itemStyle: {
+				normal: {
+					// borderColor:'red',  // 拐点边框颜色
+					lineStyle: {
+						width: 5,  // 设置线宽
+						type: 'solid'  //'dotted'虚线 'solid'实线
+					}
+				}
+			}
+		}
+	],
+}
+option && myChart.setOption(option);
