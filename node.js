@@ -250,6 +250,7 @@ var option = {
 			return str
 		}
 	},
+	// 图表距离外部div的四边间距
 	grid: {
 		left: '3%',
 		right: '20%',
@@ -284,11 +285,15 @@ var option = {
 	series: [
 		{
 			name: '管线埋深',
-			type: 'line',
+			type: 'line', //折线图，，，绘制柱状图要改为bar
 			barWidth: '20%',
 			data: yAxisData,
 			symbolSize: 15,
 			// symbol:'circle',
+			// showBackground: true, //是否带有背景颜色
+        	// backgroundStyle: {
+            //     color: 'rgba(180, 180, 180, 0.2)'
+        	// }
 			itemStyle: {
 				normal: {
 					// borderColor:'red',  // 拐点边框颜色
