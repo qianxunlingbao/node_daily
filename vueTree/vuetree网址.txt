@@ -1,0 +1,5 @@
+https://www.vue-treeselect.cn/#node
+
+
+全局安装
+npm install --save @riophae/vue-treeselect

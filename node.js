@@ -426,3 +426,23 @@ option && myChart.setOption(option);
           </template >
         </el-table-column >
       </el-table >
+
+
+{/* 2021/8/31 */}
+
+server-sent-events sse事件推送
+(单向通信)服务器向客户端推送消息(WebSocket全双工通信，服务端客户端双向通信)
+
+服务端会不断的发送数据流过来，相当于完成一次长时间的下载 
+
+sse基于http协议，目前除了IE，其他浏览器都适用
+
+sse与websocket作用相似，都是建立浏览器与服务器之间的通信渠道，然后服务器向浏览器推送信息。
+
+sse与websocket的区别：
+sse使用HTTP协议，现有的服务器软件都支持。websocket是一个独立协议
+sse属于轻量级，使用简单；websocket协议相对复杂
+sse默认支持断线重连，websocket需要自己实现
+sse一般只用来传送文本，二进制数据需要编码后传送，websocket默认支持传送二进制数据
+sse支持自定义发送的消息类型
+
